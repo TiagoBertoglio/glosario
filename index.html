@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glosario Técnico de Inglés - Sistemas</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --surface-alt: #f8fafc;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --border: #cbd5e1;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --accent: #0d9488;
+      --accent-soft: #ccfbf1;
+      --accent-text: #115e59;
+      --warn-soft: #fef3c7;
+      --warn-text: #92400e;
+      --danger: #e11d48;
+      --success: #16a34a;
+      --shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+      --radius: 14px;
+    }
+
+    body.dark {
+      --bg: #0b1120;
+      --surface: #1e293b;
+      --surface-alt: #0f172a;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --primary: #3b82f6;
+      --primary-hover: #60a5fa;
+      --accent: #14b8a6;
+      --accent-soft: rgba(20, 184, 166, 0.18);
+      --accent-text: #5eead4;
+      --warn-soft: rgba(245, 158, 11, 0.18);
+      --warn-text: #fcd34d;
+      --danger: #fb7185;
+      --success: #4ade80;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      transition: background 0.25s, color 0.25s;
+      padding-bottom: 3rem;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb, #0d9488);
+      color: #fff;
+      padding: 1.5rem 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .header-inner {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 0.6rem;
+      border-radius: 12px;
+      display: flex;
+    }
+
+    .brand h1 { font-size: 1.35rem; font-weight: 700; }
+    .brand p { font-size: 0.85rem; opacity: 0.9; }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.12s, background 0.2s, opacity 0.2s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn svg { width: 16px; height: 16px; }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    .btn-glass:hover { background: rgba(255, 255, 255, 0.28); }
+
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); }
+
+    .btn-outline {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+    .btn-danger-ghost {
+      background: transparent;
+      color: var(--danger);
+      padding: 0.35rem 0.55rem;
+    }
+    .btn-danger-ghost:hover { background: rgba(225, 29, 72, 0.1); }
+
+    .btn-edit-ghost {
+      background: transparent;
+      color: var(--primary);
+      padding: 0.35rem 0.55rem;
+    }
+    .btn-edit-ghost:hover { background: rgba(37, 99, 235, 0.1); }
+
+    .btn-speak {
+      background: transparent;
+      color: var(--accent);
+      padding: 0.35rem 0.55rem;
+    }
+    .btn-speak:hover { background: rgba(13, 148, 136, 0.12); }
+
+    .container {
+      max-width: 1150px;
+      margin: 1.5rem auto 0;
+      padding: 0 1rem;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+      background: var(--surface);
+      padding: 0.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      flex: 1 1 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+    }
+
+    .badge-count {
+      background: rgba(148, 163, 184, 0.22);
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+    }
+    .tab-btn.active .badge-count { background: rgba(255, 255, 255, 0.25); }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      align-items: center;
+    }
+
+    .search-box {
+      flex: 1 1 260px;
+      position: relative;
+    }
+
+    .search-box input, .filter-select {
+      width: 100%;
+      padding: 0.7rem 0.9rem 0.7rem 2.4rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .filter-select {
+      width: auto;
+      min-width: 180px;
+      padding-left: 0.9rem;
+    }
+
+    .search-box input:focus, .filter-select:focus { border-color: var(--primary); }
+
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1rem;
+    }
+
+    .term-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.15rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.75rem;
+      transition: transform 0.18s, border-color 0.18s;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .term-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .term-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .cat-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      background: var(--surface-alt);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .meaning-box {
+      padding: 0.55rem 0.75rem;
+      border-radius: 9px;
+      font-size: 0.9rem;
+    }
+
+    .meaning-tech {
+      background: var(--accent-soft);
+      color: var(--accent-text);
+      font-weight: 600;
+    }
+
+    .meaning-common {
+      background: var(--warn-soft);
+      color: var(--warn-text);
+    }
+
+    .meaning-label {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      opacity: 0.85;
+      margin-bottom: 0.15rem;
+    }
+
+    .example-text {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      font-style: italic;
+      border-left: 3px solid var(--primary);
+      padding-left: 0.65rem;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.25rem;
+      border-top: 1px solid var(--border);
+      padding-top: 0.55rem;
+      margin-top: auto;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 100;
+    }
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      background: var(--surface);
+      color: var(--text);
+      width: 100%;
+      max-width: 500px;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+    }
+
+    .modal h2 { margin-bottom: 1rem; font-size: 1.2rem; }
+
+    .form-group { margin-bottom: 0.9rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 0.65rem 0.8rem;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.92rem;
+    }
+    .form-group textarea { resize: vertical; min-height: 68px; }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.6rem;
+      margin-top: 1.2rem;
+    }
+
+    .game-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .game-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .game-modes { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+    .flashcard-wrap {
+      perspective: 1000px;
+      max-width: 480px;
+      height: 260px;
+      margin: 1rem auto;
+      cursor: pointer;
+    }
+
+    .flashcard-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.55s;
+      transform-style: preserve-3d;
+    }
+
+    .flashcard-wrap.flipped .flashcard-inner { transform: rotateY(180deg); }
+
+    .flashcard-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      border: 2px solid var(--primary);
+      background: var(--surface-alt);
+    }
+
+    .flashcard-back {
+      transform: rotateY(180deg);
+      border-color: var(--accent);
+    }
+
+    .quiz-box { max-width: 600px; margin: 0 auto; }
+    .quiz-options {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+    .quiz-opt {
+      text-align: left;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      border: 2px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .quiz-opt:hover:not(:disabled) { border-color: var(--primary); }
+    .quiz-opt.correct { background: rgba(22, 163, 74, 0.25); border-color: var(--success); color: var(--text); }
+    .quiz-opt.wrong { background: rgba(225, 29, 72, 0.25); border-color: var(--danger); color: var(--text); }
+
+    .match-header {
+      max-width: 750px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .lives-display {
+      font-size: 1.15rem;
+      font-weight: 700;
+      background: var(--surface-alt);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    .match-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      max-width: 750px;
+      margin: 1rem auto 0;
+    }
+    .match-col { display: flex; flex-direction: column; gap: 0.6rem; }
+    .match-item {
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: 2px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-align: center;
+      transition: 0.15s;
+    }
+    .match-item.selected { border-color: var(--primary); background: rgba(37, 99, 235, 0.18); }
+    .match-item.wrong-pair { border-color: var(--danger); background: rgba(225, 29, 72, 0.22); }
+    .match-item.matched { opacity: 0.45; border-color: var(--success); pointer-events: none; text-decoration: line-through; }
+
+    .grammar-game-box { max-width: 600px; margin: 0 auto; text-align: center; }
+    .grammar-target-word { font-size: 2rem; font-weight: 800; color: var(--primary); margin: 0.5rem 0; }
+    .grammar-input-group { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-top: 1.2rem; }
+    .grammar-input-group input {
+      padding: 0.7rem 1rem;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      width: 260px;
+      text-align: center;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--text-muted);
+      grid-column: 1 / -1;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      background: #0f172a;
+      color: #fff;
+      padding: 0.75rem 1.1rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: 0.25s;
+      z-index: 200;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 600px) {
+      .match-grid { grid-template-columns: 1fr; }
+      .header-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+        </div>
+        <div>
+          <h1>Glosario de Inglés Técnico</h1>
+          <p>Analista de Sistemas • Vocabulario Contextual</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn btn-glass" onclick="exportJSON()" title="Guardar archivo para llevar en el pendrive">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportar respaldo
+        </button>
+        <label class="btn btn-glass" title="Cargar archivo desde el pendrive">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Importar respaldo
+          <input type="file" accept=".json" onchange="importJSON(event)" hidden />
+        </label>
+        <button class="btn btn-glass" onclick="toggleTheme()" id="themeBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          Tema
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="tec1" onclick="setTab('tec1')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Inglés Técnico 1
+        <span class="badge-count" id="count-tec1">0</span>
+      </button>
+      <button class="tab-btn" data-tab="tec2" onclick="setTab('tec2')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Inglés Técnico 2
+        <span class="badge-count" id="count-tec2">0</span>
+      </button>
+      <button class="tab-btn" data-tab="games" onclick="setTab('games')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Minijuegos de Práctica
+      </button>
+    </nav>
+
+    <section id="glossaryView">
+      <div class="toolbar">
+        <div class="search-box">
+          <svg class="search-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="searchInput" placeholder="Buscar término en inglés, significado o contexto..." oninput="renderCards()" />
+        </div>
+
+        <select id="categoryFilter" class="filter-select" onchange="renderCards()">
+          <option value="ALL">Todas las categorías</option>
+          <option value="Hardware">Hardware</option>
+          <option value="Software">Software</option>
+          <option value="Programación">Programación</option>
+          <option value="Bases de Datos">Bases de Datos</option>
+          <option value="Redes / SO">Redes / SO</option>
+          <option value="General IT">General IT</option>
+        </select>
+
+        <select id="sortOrder" class="filter-select" onchange="renderCards()">
+          <option value="AZ">Orden A → Z</option>
+          <option value="ZA">Orden Z → A</option>
+          <option value="ORIG">Orden original</option>
+        </select>
+
+        <button class="btn btn-primary" onclick="openModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Agregar término
+        </button>
+      </div>
+
+      <div id="cardsGrid" class="cards-grid"></div>
+    </section>
+
+    <section id="gamesView" style="display:none;">
+      <div class="game-panel">
+        <div class="game-selector">
+          <div class="game-modes">
+            <button class="btn btn-primary" id="btnModeFlash" onclick="setGameMode('flash')">🗂️ Flashcards 3D</button>
+            <button class="btn btn-outline" id="btnModeQuiz" onclick="setGameMode('quiz')">🎯 Quiz de Contexto</button>
+            <button class="btn btn-outline" id="btnModeMatch" onclick="setGameMode('match')">🔗 Unir Parejas</button>
+            <button class="btn btn-outline" id="btnModeGrammar" onclick="setGameMode('grammar')">⚖️ Comparativos y Superlativos</button>
+          </div>
+          <select id="gameSource" class="filter-select" onchange="initCurrentGame()">
+            <option value="ALL">Usar 1° y 2° Año</option>
+            <option value="tec1">Solo Inglés Técnico 1</option>
+            <option value="tec2">Solo Inglés Técnico 2</option>
+          </select>
+        </div>
+
+        <div id="gameContainer"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="termModal">
+    <div class="modal">
+      <h2 id="modalTitle">Nuevo Término</h2>
+      <form id="termForm" onsubmit="saveTerm(event)">
+        <input type="hidden" id="editId" />
+        <div class="form-group">
+          <label>Materia / Pestaña</label>
+          <select id="fYear" required>
+            <option value="tec1">Inglés Técnico 1 (1° Año)</option>
+            <option value="tec2">Inglés Técnico 2 (2° Año)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Término en Inglés *</label>
+          <input type="text" id="fTerm" placeholder="Ej: Bus, Driver, Thread, Query..." required />
+        </div>
+        <div class="form-group">
+          <label>Categoría</label>
+          <select id="fCategory">
+            <option value="Hardware">Hardware</option>
+            <option value="Software">Software</option>
+            <option value="Programación">Programación</option>
+            <option value="Bases de Datos">Bases de Datos</option>
+            <option value="Redes / SO">Redes / SO</option>
+            <option value="General IT">General IT</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Significado Técnico (en Informática) *</label>
+          <input type="text" id="fTech" placeholder="Ej: Controlador de dispositivo" required />
+        </div>
+        <div class="form-group">
+          <label>Significado Común / Cotidiano (si cambia según contexto)</label>
+          <input type="text" id="fCommon" placeholder="Ej: Conductor / Chofer" />
+        </div>
+        <div class="form-group">
+          <label>Ejemplo de uso o nota de contexto</label>
+          <textarea id="fExample" placeholder="Ej: You need to update the GPU driver."></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const DEFAULT_TERMS = [
+      // --- INGLÉS TÉCNICO 1 ---
+      { id: 101, year: 'tec1', term: 'Likewise', category: 'General IT', tech: 'Igualmente', common: 'Igualmente / Del mismo modo', example: 'The system response was fast, and likewise the error logging.' },
+      { id: 102, year: 'tec1', term: 'Peripherals', category: 'Hardware', tech: 'Periféricos (dispositivos externos conectados a la PC).', common: 'Periféricos', example: 'Connect all peripherals before booting the system.' },
+      { id: 103, year: 'tec1', term: 'Device', category: 'Hardware', tech: 'Dispositivo (componente o hardware conectado).', common: 'Aparato / Dispositivo', example: 'The system detected a new USB device.' },
+      { id: 104, year: 'tec1', term: 'LCD', category: 'Hardware', tech: 'Liquid Crystal Display (Pantalla de cristal líquido).', common: 'Pantalla LCD', example: 'The monitor features an LCD screen.' },
+      { id: 105, year: 'tec1', term: 'Touch Screen', category: 'Hardware', tech: 'Pantalla táctil.', common: 'Pantalla táctil', example: 'The kiosk uses a touch screen interface.' },
+      { id: 106, year: 'tec1', term: 'Motherboard', category: 'Hardware', tech: 'Placa madre / Placa base principal del sistema.', common: 'Placa madre', example: 'The CPU is mounted directly on the motherboard.' },
+      { id: 107, year: 'tec1', term: 'Case', category: 'Hardware', tech: 'Gabinete / Caja de la computadora.', common: 'Caja / Estuche', example: 'The power supply fits inside the computer case.' },
+      { id: 108, year: 'tec1', term: 'Cable', category: 'Hardware', tech: 'Cable (de conexión física).', common: 'Cable / Cuerda', example: 'Plug the network cable into the router.' },
+      { id: 109, year: 'tec1', term: 'Definitions', category: 'General IT', tech: 'Definiciones técnicas.', common: 'Definiciones', example: 'Check the manual for system definitions.' },
+      { id: 110, year: 'tec1', term: 'Components', category: 'Hardware', tech: 'Componentes de hardware o software.', common: 'Componentes', example: 'List all hardware components.' },
+      { id: 111, year: 'tec1', term: 'Functions', category: 'General IT', tech: 'Funciones de un sistema o rutina.', common: 'Funciones', example: 'Define the core functions of the program.' },
+      { id: 112, year: 'tec1', term: 'Purpose', category: 'General IT', tech: 'Propósito u objetivo de diseño.', common: 'Propósito', example: 'The main purpose of this database is security.' },
+      { id: 113, year: 'tec1', term: 'Types', category: 'General IT', tech: 'Tipos o clasificaciones.', common: 'Tipos', example: 'There are different types of memory, such as RAM and ROM.' },
+      { id: 114, year: 'tec1', term: 'Brands', category: 'General IT', tech: 'Marcas fabricantes.', common: 'Marcas', example: 'Intel and AMD are well-known processor brands.' },
+      { id: 115, year: 'tec1', term: 'Hard Drive', category: 'Hardware', tech: 'Disco duro (almacenamiento magnético permanente).', common: 'Disco duro', example: 'Install the OS on the main hard drive.' },
+      { id: 116, year: 'tec1', term: 'Heat Sink', category: 'Hardware', tech: 'Disipador (de calor para CPU/GPU).', common: 'Sumidero de calor', example: 'Apply thermal paste between the CPU and the heat sink.' },
+      { id: 117, year: 'tec1', term: 'Fan', category: 'Hardware', tech: 'Ventilador (de refrigeración).', common: 'Ventilador / Abanico', example: 'Clean the cooling fan regularly.' },
+      { id: 118, year: 'tec1', term: 'Disk Drive', category: 'Hardware', tech: 'Unidad de disco (lectora/grabadora).', common: 'Unidad de disco', example: 'Insert the disc into the disk drive.' },
+      { id: 119, year: 'tec1', term: 'Bandwidth', category: 'Redes / SO', tech: 'Ancho de banda (capacidad de transmisión de datos).', common: 'Ancho de banda', example: 'High bandwidth is required for streaming.' },
+      { id: 120, year: 'tec1', term: 'OS', category: 'Redes / SO', tech: 'Operating System (Sistema Operativo).', common: 'Sistema Operativo', example: 'Windows is a popular operating system.' },
+      { id: 121, year: 'tec1', term: 'Mouse / Mice', category: 'Hardware', tech: 'Mouse / Dispositivo apuntador (Singular / Plural: Mice).', common: 'Ratón / Ratones', example: 'The optical mouse is connected via USB.' },
+      { id: 122, year: 'tec1', term: 'How long', category: 'General IT', tech: '¿Por cuánto tiempo? (Medición temporal de procesos o tareas).', common: '¿Cuánto tiempo?', example: 'How long does the backup take?' },
+      { id: 123, year: 'tec1', term: 'Daughterboard', category: 'Hardware', tech: 'Placa hija (tarjeta de expansión auxiliar).', common: 'Placa hija', example: 'The sound card is a daughterboard.' },
+      { id: 124, year: 'tec1', term: 'Troubleshoot', category: 'General IT', tech: 'Solucionar problemas / Depurar fallas técnicas.', common: 'Resolver problemas', example: 'Use diagnostics to troubleshoot network errors.' },
+      { id: 125, year: 'tec1', term: 'Underline', category: 'Software', tech: 'Subrayado (formato de texto).', common: 'Subrayar', example: 'Underline the command syntax.' },
+      { id: 126, year: 'tec1', term: 'Italic', category: 'Software', tech: 'Cursiva (estilo de fuente).', common: 'Itálica / Cursiva', example: 'Use italic for variable names.' },
+      { id: 127, year: 'tec1', term: 'Bold', category: 'Software', tech: 'Negrita (peso de fuente destacado).', common: 'Negrita / Intrépido', example: 'Highlight keywords in bold.' },
+      { id: 128, year: 'tec1', term: 'Word Processor', category: 'Software', tech: 'Procesador de texto (software de edición, ej. Word).', common: 'Procesador de palabras', example: 'Microsoft Word is a powerful word processor.' },
+      { id: 129, year: 'tec1', term: 'Striking', category: 'Software', tech: 'Llamativo / Destacado visualmente en la interfaz.', common: 'Sorprendente / Llamativo', example: 'The user interface has a striking design.' },
+      { id: 130, year: 'tec1', term: 'Undo', category: 'Software', tech: 'Deshacer (revertir la última acción en el software).', common: 'Deshacer', example: 'Press Ctrl+Z to undo the deletion.' },
+      { id: 131, year: 'tec1', term: 'Print Preview', category: 'Software', tech: 'Vista preliminar (de impresión).', common: 'Vista previa de impresión', example: 'Check the layout in print preview before printing.' },
+      { id: 132, year: 'tec1', term: 'Layout', category: 'Software', tech: 'Diseño de página / Disposición visual de elementos.', common: 'Disposición / Diseño', example: 'Adjust the page layout to landscape.' },
+      { id: 133, year: 'tec1', term: 'Font', category: 'Software', tech: 'Fuente tipográfica (tipografía de texto).', common: 'Fuente', example: 'Select a monospace font for code editing.' },
+      { id: 134, year: 'tec1', term: 'Spell Check', category: 'Software', tech: 'Corrector ortográfico.', common: 'Verificación de ortografía', example: 'Enable spell check in the editor.' },
+      { id: 135, year: 'tec1', term: 'Enhance', category: 'Software', tech: 'Mejorar / Optimizar calidad de imagen o función.', common: 'Mejorar', example: 'You can enhance the image contrast with this tool.' },
+      { id: 136, year: 'tec1', term: 'Shapes', category: 'Software', tech: 'Formas / Figuras geométricas vectoriales.', common: 'Formas', example: 'Insert shapes into the document.' },
+      { id: 137, year: 'tec1', term: 'Scroll Out', category: 'Software', tech: 'Alejar el zoom / Desplazarse hacia afuera en la vista.', common: 'Desplazarse hacia afuera', example: 'Scroll out to view the entire diagram.' },
+      { id: 138, year: 'tec1', term: 'Spreadsheet', category: 'Software', tech: 'Hoja de cálculo (ej. Excel).', common: 'Hoja de cálculo', example: 'Enter financial data into the spreadsheet.' },
+      { id: 139, year: 'tec1', term: 'Fields', category: 'Bases de Datos', tech: 'Campos (columnas o atributos en bases de datos/formularios).', common: 'Campos', example: 'Fill in all required form fields.' },
+      { id: 140, year: 'tec1', term: 'Network', category: 'Redes / SO', tech: 'Red informática de computadoras.', common: 'Red', example: 'Connect the PC to the local network.' },
+      { id: 141, year: 'tec1', term: 'Management', category: 'General IT', tech: 'Administración / Gestión de sistemas o recursos.', common: 'Gestión / Administración', example: 'A database management system (DBMS) stores and organizes data.' },
+      { id: 142, year: 'tec1', term: 'Sort', category: 'Programación', tech: 'Ordenar / Clasificar datos o registros.', common: 'Clasificar / Ordenar', example: 'Sort query results by ID.' },
+      { id: 143, year: 'tec1', term: 'Template', category: 'Software', tech: 'Plantilla prediseñada.', common: 'Plantilla / Modelo', example: 'Use a document template.' },
+      { id: 144, year: 'tec1', term: 'Macros', category: 'Programación', tech: 'Macro / Conjunto de instrucciones automatizadas.', common: 'Macros', example: 'Run a VBA macro in Excel.' },
+      { id: 145, year: 'tec1', term: 'Crop', category: 'Software', tech: 'Recortar (imagen o sección).', common: 'Cosechar / Cortar', example: 'Crop the screenshot before saving.' },
+      { id: 146, year: 'tec1', term: 'Must', category: 'General IT', tech: 'Debe / Obligatoriedad técnica (verbo modal).', common: 'Deber', example: 'The system must validate user input.' },
+      { id: 147, year: 'tec1', term: 'Refined', category: 'General IT', tech: 'Depurado / Optimizado / Refinado.', common: 'Refinado', example: 'The new version uses a refined algorithm with better performance.' },
+
+      // --- INGLÉS TÉCNICO 2 ---
+      { id: 201, year: 'tec2', term: 'IDE', category: 'Programación', tech: 'Integrated Development Environment (Entorno de Desarrollo Integrado).', common: 'IDE', example: 'Visual Studio Code is a popular IDE.' },
+      { id: 202, year: 'tec2', term: 'Framework', category: 'Programación', tech: 'Marco de trabajo / Estructura base para desarrollo de software.', common: 'Marco / Estructura', example: 'The web app is built using the React framework.' },
+      { id: 203, year: 'tec2', term: 'Extensions', category: 'Software', tech: 'Extensiones / Complementos de software.', common: 'Extensiones', example: 'Install Python extensions in your IDE.' },
+      { id: 204, year: 'tec2', term: 'Keybindings', category: 'Software', tech: 'Vinculación de teclas / atajos de teclado configurados.', common: 'Combinaciones de teclas', example: 'Customize keybindings for faster coding.' },
+      { id: 205, year: 'tec2', term: 'Set up', category: 'General IT', tech: 'Configurar / Preparar el sistema o entorno (verbo). Ojo: "setup" junto es sustantivo (la configuración / instalación).', common: 'Configurar / Preparar', example: 'You need to set up the environment before running the setup wizard.' },
+      { id: 206, year: 'tec2', term: 'Set', category: 'General IT', tech: 'Conjunto / Establecer / Definir valor.', common: 'Conjunto / Poner', example: 'Set the variable value to zero.' },
+      { id: 207, year: 'tec2', term: 'Override', category: 'Programación', tech: 'Anular / Sobrescribir (método o configuración heredada).', common: 'Anular / Invalidar', example: 'Override the default style property.' },
+      { id: 208, year: 'tec2', term: 'Lint', category: 'Programación', tech: 'Herramienta de análisis estático de código para detectar errores de sintaxis y estilo.', common: 'Pelusa / Limpiar código', example: 'Run the linter before committing code.' },
+      { id: 209, year: 'tec2', term: 'Debugging', category: 'Programación', tech: 'Depuración de código (proceso de buscar y corregir errores/bugs).', common: 'Depuración', example: 'Use breakpoints for debugging.' },
+      { id: 210, year: 'tec2', term: 'Both', category: 'General IT', tech: 'Ambos (dos elementos referenciados).', common: 'Ambos', example: 'Both functions return a boolean.' },
+      { id: 211, year: 'tec2', term: 'Tailor', category: 'Software', tech: 'Adaptar / Personalizar a medida.', common: 'Sastre / Adaptar', example: 'Tailor the configuration to your needs.' },
+      { id: 212, year: 'tec2', term: 'Whether (on)', category: 'General IT', tech: 'Sinónimo de if (si / de si / ya sea que).', common: 'Si / Ya sea que', example: 'Check whether the connection is active.' },
+      { id: 213, year: 'tec2', term: 'Make', category: 'Programación', tech: 'Hacer / Ejecutar compilación o construcción (ej. Makefiles).', common: 'Hacer / Crear', example: 'Run make to build the project from the Makefile.' },
+      { id: 214, year: 'tec2', term: 'Leverage', category: 'General IT', tech: 'Aprovechar / Potenciar recursos o herramientas.', common: 'Apalancar / Influencia', example: 'Companies leverage cloud infrastructure to reduce costs.' },
+      { id: 215, year: 'tec2', term: 'Wants', category: 'General IT', tech: 'Petición / Deseo del usuario o sistema.', common: 'Quiere / Desea', example: 'The user wants to export data.' },
+      { id: 216, year: 'tec2', term: 'DIMM', category: 'Hardware', tech: 'Dual In-line Memory Module (Módulo de memoria RAM).', common: 'Módulo DIMM', example: 'Insert the DIMM module firmly into the slot.' },
+      { id: 217, year: 'tec2', term: 'Up to', category: 'General IT', tech: 'Hasta / En su límite máximo temporal o cuantitativo.', common: 'Hasta / Máximo', example: 'This drive supports a storage capacity of up to 2 TB.' },
+      { id: 218, year: 'tec2', term: 'Until', category: 'General IT', tech: 'Hasta (límite de tiempo o evento).', common: 'Hasta', example: 'Wait until the process finishes.' },
+      { id: 219, year: 'tec2', term: 'FAQ', category: 'General IT', tech: 'Frequently Asked Questions (Preguntas frecuentes).', common: 'Preguntas frecuentes', example: 'Check the FAQ section for support.' },
+      { id: 220, year: 'tec2', term: 'Knowledge', category: 'General IT', tech: 'Conocimiento (base de datos de conocimiento técnico).', common: 'Conocimiento', example: 'Search the knowledge base before contacting support.' },
+      { id: 221, year: 'tec2', term: 'However', category: 'General IT', tech: 'Sin embargo (conector lógico de contraste).', common: 'Sin embargo / No obstante', example: 'The code compiled; however, a warning was thrown.' },
+      { id: 222, year: 'tec2', term: 'For instance', category: 'General IT', tech: 'Por ejemplo (conector de ejemplificación).', common: 'Por ejemplo', example: 'For instance, use an integer for IDs.' },
+      { id: 223, year: 'tec2', term: 'Network ports', category: 'Redes / SO', tech: 'Puertos de red.', common: 'Puertos de red', example: 'Configure firewall rules for network ports.' },
+      { id: 224, year: 'tec2', term: 'Across', category: 'General IT', tech: 'A través de / De un lado a otro en la red o sistema.', common: 'A través de', example: 'Data transmitted across the network.' },
+      { id: 225, year: 'tec2', term: 'Features', category: 'Software', tech: 'Características / Prestaciones / Funcionalidades de un software.', common: 'Características', example: 'Version 2.0 includes many new features.' },
+      { id: 226, year: 'tec2', term: 'Hints', category: 'Software', tech: 'Pistas / Sugerencias de código (IntelliSense).', common: 'Pistas / Indirectas', example: 'The IDE shows hints while you type code.' },
+      { id: 227, year: 'tec2', term: 'Breadcrumbs', category: 'Software', tech: 'Migas de pan (ruta de navegación visual en la UI).', common: 'Migas de pan', example: 'Use breadcrumbs to track directory path.' },
+      { id: 228, year: 'tec2', term: 'Shown', category: 'Software', tech: 'Mostrado / Renderizado en pantalla.', common: 'Mostrado', example: 'The results are shown in the console.' },
+      { id: 229, year: 'tec2', term: 'Siblings', category: 'Programación', tech: 'Elementos hermanos (nodos en el mismo nivel del DOM/árbol).', common: 'Hermanos', example: 'Two list items inside the same <ul> are siblings in the DOM.' },
+      { id: 230, year: 'tec2', term: 'Toggle', category: 'Software', tech: 'Alternar (cambiar entre dos estados, encendido/apagado).', common: 'Alternar conmutador', example: 'Click the button to toggle dark mode.' },
+      { id: 231, year: 'tec2', term: 'Highlighted', category: 'Software', tech: 'Resaltado / Seleccionado visualmente.', common: 'Resaltado', example: 'The syntax error is highlighted in red.' },
+      { id: 232, year: 'tec2', term: 'Regardless', category: 'General IT', tech: 'Sin importar / Independientemente de.', common: 'A pesar de / Sin importar', example: 'The script runs regardless of the warnings.' },
+      { id: 233, year: 'tec2', term: 'Regarding', category: 'General IT', tech: 'Con respecto a / En cuanto a.', common: 'Con respecto a', example: 'I have some notes regarding performance.' },
+      { id: 234, year: 'tec2', term: 'Embed', category: 'Software', tech: 'Insertar / Incluir (código u objeto dentro de otro).', common: 'Incrustar / Integrar', example: 'You can embed a video in an HTML page.' },
+      { id: 235, year: 'tec2', term: 'Peek', category: 'Software', tech: 'Espiar / Vista rápida de definición sin abrir archivo.', common: 'Mirada rápida', example: 'Use Peek Definition to see a function without opening its file.' },
+      { id: 236, year: 'tec2', term: 'Behavior', category: 'Programación', tech: 'Comportamiento del sistema o script.', common: 'Comportamiento', example: 'We need to define the behavior of this component.' },
+      { id: 237, year: 'tec2', term: 'Brackets', category: 'Programación', tech: 'Corchetes [ ]. Ojo: las llaves { } en inglés se llaman "braces" (o "curly brackets").', common: 'Corchetes / Paréntesis', example: 'Close all brackets before running the code.' },
+      { id: 238, year: 'tec2', term: 'Bracket Matching', category: 'Programación', tech: 'Coincidencia o unión de llaves/corchetes.', common: 'Coincidencia de corchetes', example: 'The IDE uses bracket matching to highlight each pair.' },
+      { id: 239, year: 'tec2', term: 'Themeable', category: 'Software', tech: 'Temático / Adaptable a temas visuales.', common: 'Modificable por temas', example: 'The UI is highly themeable.' },
+      { id: 240, year: 'tec2', term: 'Loop', category: 'Programación', tech: 'Bucle / Ciclo de repetición en código.', common: 'Lazo / Vuelta', example: 'The program got stuck in an infinite loop.' },
+      { id: 241, year: 'tec2', term: 'Lightbulb', category: 'Software', tech: 'Bombilla / Icono de sugerencia rápida de corrección.', common: 'Bombilla', example: 'Click the lightbulb to fix quick actions.' },
+      { id: 242, year: 'tec2', term: 'Picker', category: 'Software', tech: 'Selector (de color, archivos o opciones).', common: 'Selector', example: 'Use the color picker to choose a background color.' },
+      { id: 243, year: 'tec2', term: 'Wrapper', category: 'Programación', tech: 'Envoltorio / Componente contenedor que encapsula otro.', common: 'Envoltorio', example: 'This library is a wrapper around a REST API.' },
+      { id: 244, year: 'tec2', term: 'Walkthrough', category: 'Software', tech: 'Recorrido guiado / Tutorial interactivo inicial.', common: 'Recorrido / Tutorial', example: 'Complete the welcome walkthrough.' },
+      { id: 245, year: 'tec2', term: 'Multitask', category: 'General IT', tech: 'Multitarea (ejecución simultánea de procesos).', common: 'Multitarea', example: 'A modern operating system can multitask, running many programs at once.' },
+      { id: 246, year: 'tec2', term: 'Nowadays', category: 'General IT', tech: 'Hoy en día / Actualmente en la tecnología.', common: 'Hoy en día', example: 'Nowadays, cloud computing is standard.' },
+      { id: 247, year: 'tec2', term: 'Measurements', category: 'General IT', tech: 'Medidas / Métricas de rendimiento.', common: 'Medidas', example: 'We took performance measurements before and after the update.' },
+      { id: 248, year: 'tec2', term: 'Advertisements', category: 'General IT', tech: 'Publicidades / Anuncios en aplicaciones.', common: 'Publicidades', example: 'The free version of the app shows advertisements.' },
+      { id: 249, year: 'tec2', term: 'Straightforward', category: 'General IT', tech: 'Directo / Sencillo / Fácil de implementar.', common: 'Directo / Simple', example: 'A straightforward API implementation.' },
+      { id: 250, year: 'tec2', term: 'Huge', category: 'General IT', tech: 'Enorme / De gran escala (volumen de datos/tráfico).', common: 'Enorme', example: 'The server has to process huge datasets every day.' },
+      { id: 251, year: 'tec2', term: 'Walled-garden ecosystem', category: 'Redes / SO', tech: 'Ecosistema cerrado / walled garden (plataforma controlada).', common: 'Jardín amurallado', example: 'iOS is known as a walled-garden ecosystem.' },
+      { id: 252, year: 'tec2', term: 'Gadgets', category: 'Hardware', tech: 'Dispositivos electrónicos / Artefactos.', common: 'Artilugios / Gadgets', example: 'Smart home gadgets connect to the Wi-Fi network.' },
+      { id: 253, year: 'tec2', term: 'Profitable', category: 'General IT', tech: 'Rentable / Viable comercialmente.', common: 'Rentable', example: 'The software startup became profitable in its second year.' },
+      { id: 254, year: 'tec2', term: 'Profit', category: 'General IT', tech: 'Ganancia / Beneficio económico.', common: 'Ganancia', example: 'The company made a profit from its mobile app.' },
+      { id: 255, year: 'tec2', term: 'Bitter', category: 'General IT', tech: 'Amargo / Duro, resentido (ej. una competencia o experiencia difícil).', common: 'Amargo', example: 'The two tech companies had a bitter rivalry for years.' },
+      { id: 256, year: 'tec2', term: 'Hence', category: 'General IT', tech: 'Por lo tanto / De ahí que (conector lógico).', common: 'Por lo tanto', example: 'Error in syntax, hence compilation failed.' },
+      { id: 257, year: 'tec2', term: 'Comprehensive', category: 'General IT', tech: 'Completo / Exhaustivo en alcance.', common: 'Completo / Exhaustivo (falso amigo: NO significa "comprensivo")', example: 'The manual provides comprehensive documentation.' },
+      { id: 258, year: 'tec2', term: 'Hoisted', category: 'Programación', tech: 'Levantado / Hoisting (elevación de variables/funciones en JS).', common: 'Izado / Levantado', example: 'In JavaScript, function declarations are hoisted to the top of their scope.' },
+      { id: 259, year: 'tec2', term: 'Overlapping', category: 'General IT', tech: 'Superpuesto / Solapamiento de capas o ventanas.', common: 'Superposición', example: 'The two windows are overlapping on the screen.' },
+      { id: 260, year: 'tec2', term: 'Looked up', category: 'General IT', tech: 'Buscado / Consultado en registros o índices.', common: 'Buscado', example: 'The user ID is looked up in the database index.' },
+      { id: 261, year: 'tec2', term: 'Unlike', category: 'General IT', tech: 'A diferencia de.', common: 'A diferencia de', example: 'Unlike Python, C++ requires manual memory management.' },
+      { id: 262, year: 'tec2', term: 'Self-documenting', category: 'Programación', tech: 'Autodocumentado (código claro que no requiere comentarios extra).', common: 'Autodocumentado', example: 'Clean code should be self-documenting.' },
+      { id: 263, year: 'tec2', term: 'Surrounding', category: 'General IT', tech: 'Rodeando / Contexto circundante en el código o interfaz.', common: 'Circundante / Rodeando', example: 'Check the surrounding code to understand the error.' },
+      { id: 264, year: 'tec2', term: 'Yield', category: 'Programación', tech: 'Ceder / Producir un valor (en generadores o corrutinas).', common: 'Producir / Ceder / Rendimiento', example: 'A generator function uses yield to return values one by one.' },
+      { id: 265, year: 'tec2', term: 'Layer', category: 'Software', tech: 'Capa de arquitectura (ej. capa de datos, presentación).', common: 'Capa', example: 'The business logic layer sits between the database and the UI.' },
+      { id: 266, year: 'tec2', term: 'Prevent', category: 'General IT', tech: 'Evitar / Prevenir errores o accesos no autorizados.', common: 'Evitar', example: 'Input validation helps prevent SQL injection.' },
+      { id: 267, year: 'tec2', term: 'Consistent', category: 'General IT', tech: 'Consistente / Coherente con los estándares.', common: 'Consistente', example: 'Maintain consistent coding style.' },
+      { id: 268, year: 'tec2', term: 'Desirable', category: 'General IT', tech: 'Deseable / Recomendado en el diseño.', common: 'Deseable', example: 'Low latency is highly desirable.' },
+      { id: 269, year: 'tec2', term: 'Slower', category: 'General IT', tech: 'Más lento (comparativo técnico de velocidad).', common: 'Más lento', example: 'HDD is slower than SSD.' },
+      { id: 270, year: 'tec2', term: 'Subsequent', category: 'General IT', tech: 'Siguiente / Subsiguiente (proceso o instrucción posterior).', common: 'Siguiente / Posterior', example: 'Subsequent commands run after the first one finishes.' },
+      { id: 271, year: 'tec2', term: 'Append', category: 'Programación', tech: 'Agregar / Adjuntar al final (de una lista, archivo o DOM).', common: 'Añadir / Adjuntar', example: 'The script appends a new node to the container.' },
+      { id: 272, year: 'tec2', term: 'Albeit', category: 'General IT', tech: 'Aunque / A pesar de que (conector formal de concesión).', common: 'Aunque / Si bien', example: 'The program works, albeit slowly.' },
+      { id: 273, year: 'tec2', term: 'Wrapped', category: 'Programación', tech: 'Envuelto / Encapsulado.', common: 'Envuelto', example: 'The long text is wrapped to fit the screen.' },
+      { id: 274, year: 'tec2', term: 'Otherwise', category: 'General IT', tech: 'De lo contrario (estructura condicional alternativa).', common: 'De lo contrario', example: 'Save changes, otherwise they will be lost.' }
+    ];
+
+    // Clave v2: así se cargan los términos corregidos aunque el navegador tenga una copia vieja guardada
+    const STORAGE_KEY = 'it_glossary_terms_v2';
+    let terms = DEFAULT_TERMS;
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (Array.isArray(saved)) terms = saved;
+    } catch (e) { /* sin datos guardados: se usan los términos por defecto */ }
+    let activeTab = 'tec1';
+    let currentGame = 'flash';
+    let flashIndex = 0;
+    let quizScore = 0;
+    let grammarScore = 0;
+    let currentGrammarQ = null;
+
+    const GRAMMAR_POOL = [
+      { word: 'Fast', type: 'Comparative', answer: 'Faster', hint: 'Comparativo de velocidad (más rápido)' },
+      { word: 'Fast', type: 'Superlative', answer: 'Fastest', hint: 'Superlativo de velocidad (el más rápido)' },
+      { word: 'Slow', type: 'Comparative', answer: 'Slower', hint: 'Comparativo (más lento)' },
+      { word: 'Slow', type: 'Superlative', answer: 'Slowest', hint: 'Superlativo (el más lento)' },
+      { word: 'Large', type: 'Comparative', answer: 'Larger', hint: 'Comparativo de tamaño (más grande)' },
+      { word: 'Large', type: 'Superlative', answer: 'Largest', hint: 'Superlativo (el más grande)' },
+      { word: 'Good', type: 'Comparative', answer: 'Better', hint: 'Comparativo irregular (mejor)' },
+      { word: 'Good', type: 'Superlative', answer: 'Best', hint: 'Superlativo irregular (el mejor)' },
+      { word: 'Bad', type: 'Comparative', answer: 'Worse', hint: 'Comparativo irregular (peor)' },
+      { word: 'Bad', type: 'Superlative', answer: 'Worst', hint: 'Superlativo irregular (el peor)' },
+      { word: 'Easy', type: 'Comparative', answer: 'Easier', hint: 'Comparativo (más fácil)' },
+      { word: 'Easy', type: 'Superlative', answer: 'Easiest', hint: 'Superlativo (el más fácil)' },
+      { word: 'Cheap', type: 'Comparative', answer: 'Cheaper', hint: 'Comparativo de precio (más barato)' },
+      { word: 'Cheap', type: 'Superlative', answer: 'Cheapest', hint: 'Superlativo (el más barato)' },
+      { word: 'Big', type: 'Comparative', answer: 'Bigger', hint: 'Comparativo (más grande). Ojo: se duplica la consonante final' },
+      { word: 'Big', type: 'Superlative', answer: 'Biggest', hint: 'Superlativo (el más grande). Ojo: se duplica la consonante final' },
+      { word: 'Powerful', type: 'Comparative', answer: 'More powerful', hint: 'Comparativo de adjetivo largo (más potente): more + adjetivo' },
+      { word: 'Powerful', type: 'Superlative', answer: 'Most powerful', hint: 'Superlativo de adjetivo largo (el más potente): most + adjetivo' },
+      { word: 'Reliable', type: 'Comparative', answer: 'More reliable', hint: 'Comparativo de adjetivo largo (más confiable)' },
+      { word: 'Reliable', type: 'Superlative', answer: 'Most reliable', hint: 'Superlativo de adjetivo largo (el más confiable)' },
+      { word: 'Efficient', type: 'Comparative', answer: 'More efficient', hint: 'Comparativo de adjetivo largo (más eficiente)' },
+      { word: 'Efficient', type: 'Superlative', answer: 'Most efficient', hint: 'Superlativo de adjetivo largo (el más eficiente)' },
+      { word: 'Hot', type: 'Comparative', answer: 'Hotter', hint: 'Comparativo de temperatura (más caliente). Ojo: doble consonante' },
+      { word: 'Hot', type: 'Superlative', answer: 'Hottest', hint: 'Superlativo (el más caliente). Ojo: doble consonante' },
+      { word: 'Small', type: 'Comparative', answer: 'Smaller', hint: 'Comparativo de tamaño (más pequeño)' },
+      { word: 'Small', type: 'Superlative', answer: 'Smallest', hint: 'Superlativo (el más pequeño)' },
+      { word: 'New', type: 'Comparative', answer: 'Newer', hint: 'Comparativo (más nuevo)' },
+      { word: 'New', type: 'Superlative', answer: 'Newest', hint: 'Superlativo (el más nuevo)' },
+      { word: 'Old', type: 'Comparative', answer: 'Older', hint: 'Comparativo (más viejo / antiguo)' },
+      { word: 'Old', type: 'Superlative', answer: 'Oldest', hint: 'Superlativo (el más viejo / antiguo)' },
+      { word: 'Safe', type: 'Comparative', answer: 'Safer', hint: 'Comparativo (más seguro). Termina en "e": solo se agrega "r"' },
+      { word: 'Safe', type: 'Superlative', answer: 'Safest', hint: 'Superlativo (el más seguro). Termina en "e": solo se agrega "st"' },
+      { word: 'Wide', type: 'Comparative', answer: 'Wider', hint: 'Comparativo (más ancho). Termina en "e"' },
+      { word: 'Wide', type: 'Superlative', answer: 'Widest', hint: 'Superlativo (el más ancho). Termina en "e"' },
+      { word: 'Thin', type: 'Comparative', answer: 'Thinner', hint: 'Comparativo (más delgado). Ojo: doble consonante' },
+      { word: 'Thin', type: 'Superlative', answer: 'Thinnest', hint: 'Superlativo (el más delgado). Ojo: doble consonante' },
+      { word: 'Heavy', type: 'Comparative', answer: 'Heavier', hint: 'Comparativo (más pesado). La "y" cambia a "i"' },
+      { word: 'Heavy', type: 'Superlative', answer: 'Heaviest', hint: 'Superlativo (el más pesado). La "y" cambia a "i"' },
+      { word: 'Busy', type: 'Comparative', answer: 'Busier', hint: 'Comparativo (más ocupado / con más tráfico). La "y" cambia a "i"' },
+      { word: 'Busy', type: 'Superlative', answer: 'Busiest', hint: 'Superlativo (el más ocupado). La "y" cambia a "i"' },
+      { word: 'Far', type: 'Comparative', answer: 'Farther', hint: 'Comparativo irregular de distancia (más lejos). También vale "further"', alt: ['Further'] },
+      { word: 'Far', type: 'Superlative', answer: 'Farthest', hint: 'Superlativo irregular (el más lejano). También vale "furthest"', alt: ['Furthest'] },
+      { word: 'Little', type: 'Comparative', answer: 'Less', hint: 'Comparativo irregular de cantidad (menos)' },
+      { word: 'Little', type: 'Superlative', answer: 'Least', hint: 'Superlativo irregular (lo mínimo)' },
+      { word: 'Many', type: 'Comparative', answer: 'More', hint: 'Comparativo irregular de cantidad (más)' },
+      { word: 'Many', type: 'Superlative', answer: 'Most', hint: 'Superlativo irregular (la mayor cantidad)' },
+      { word: 'Secure', type: 'Comparative', answer: 'More secure', hint: 'Comparativo de adjetivo largo (más seguro): more + adjetivo' },
+      { word: 'Secure', type: 'Superlative', answer: 'Most secure', hint: 'Superlativo de adjetivo largo (el más seguro): most + adjetivo' },
+      { word: 'Expensive', type: 'Comparative', answer: 'More expensive', hint: 'Comparativo de adjetivo largo (más caro)' },
+      { word: 'Expensive', type: 'Superlative', answer: 'Most expensive', hint: 'Superlativo de adjetivo largo (el más caro)' },
+      { word: 'Complex', type: 'Comparative', answer: 'More complex', hint: 'Comparativo de adjetivo largo (más complejo)' },
+      { word: 'Complex', type: 'Superlative', answer: 'Most complex', hint: 'Superlativo de adjetivo largo (el más complejo)' },
+      { word: 'Useful', type: 'Comparative', answer: 'More useful', hint: 'Comparativo de adjetivo largo (más útil)' },
+      { word: 'Useful', type: 'Superlative', answer: 'Most useful', hint: 'Superlativo de adjetivo largo (el más útil)' },
+      { word: 'Modern', type: 'Comparative', answer: 'More modern', hint: 'Comparativo (más moderno): more + adjetivo' },
+      { word: 'Modern', type: 'Superlative', answer: 'Most modern', hint: 'Superlativo (el más moderno): most + adjetivo' },
+      { word: 'Portable', type: 'Comparative', answer: 'More portable', hint: 'Comparativo de adjetivo largo (más portátil)' },
+      { word: 'Portable', type: 'Superlative', answer: 'Most portable', hint: 'Superlativo de adjetivo largo (el más portátil)' }
+    ];
+
+    function saveToStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(terms));
+      } catch (e) { /* el navegador no permite guardar */ }
+      updateCounts();
+    }
+
+    function speak(text) {
+      if (!('speechSynthesis' in window)) {
+        showToast('Tu navegador no soporta pronunciación 🔇');
+        return;
+      }
+      // "Mouse / Mice" -> lee ambas formas; quita aclaraciones entre paréntesis
+      const clean = String(text).replace(/\(.*?\)/g, '').replace(/\//g, ',').trim();
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(clean);
+      u.lang = 'en-US';
+      u.rate = 0.9;
+      const voice = window.speechSynthesis.getVoices().find(v => v.lang && v.lang.startsWith('en'));
+      if (voice) u.voice = voice;
+      window.speechSynthesis.speak(u);
+    }
+
+    function speakById(id) {
+      const item = terms.find(t => t.id === id);
+      if (item) speak(item.term);
+    }
+
+    function speakExampleById(id) {
+      const item = terms.find(t => t.id === id);
+      if (item && item.example) speak(item.example);
+    }
+
+    function updateCounts() {
+      document.getElementById('count-tec1').textContent = terms.filter(t => t.year === 'tec1').length;
+      document.getElementById('count-tec2').textContent = terms.filter(t => t.year === 'tec2').length;
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), 2800);
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('it_glossary_dark', document.body.classList.contains('dark'));
+    }
+
+    if (localStorage.getItem('it_glossary_dark') === 'true') {
+      document.body.classList.add('dark');
+    }
+
+    function setTab(tab) {
+      activeTab = tab;
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.tab === tab);
+      });
+
+      if (tab === 'games') {
+        document.getElementById('glossaryView').style.display = 'none';
+        document.getElementById('gamesView').style.display = 'block';
+        initCurrentGame();
+      } else {
+        document.getElementById('glossaryView').style.display = 'block';
+        document.getElementById('gamesView').style.display = 'none';
+        renderCards();
+      }
+    }
+
+    function renderCards() {
+      const grid = document.getElementById('cardsGrid');
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const cat = document.getElementById('categoryFilter').value;
+
+      const filtered = terms.filter(t => {
+        const matchYear = t.year === activeTab;
+        const matchCat = cat === 'ALL' || t.category === cat;
+        const matchText =
+          t.term.toLowerCase().includes(q) ||
+          t.tech.toLowerCase().includes(q) ||
+          (t.common && t.common.toLowerCase().includes(q)) ||
+          (t.example && t.example.toLowerCase().includes(q));
+        return matchYear && matchCat && matchText;
+      });
+
+      const order = document.getElementById('sortOrder').value;
+      if (order === 'AZ') filtered.sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }));
+      if (order === 'ZA') filtered.sort((a, b) => b.term.localeCompare(a.term, 'en', { sensitivity: 'base' }));
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="empty-state">No se encontraron términos con ese filtro. ¡Probá agregar uno nuevo!</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(t => `
+        <article class="term-card">
+          <div>
+            <div class="card-top">
+              <h3 class="term-title">${escapeHTML(t.term)}</h3>
+              <span class="cat-tag">${escapeHTML(t.category)}</span>
+            </div>
+
+            <div class="meaning-box meaning-tech" style="margin-top: 0.7rem;">
+              <span class="meaning-label">💻 Contexto Técnico / Sistemas</span>
+              ${escapeHTML(t.tech)}
+            </div>
+
+            ${t.common ? `
+              <div class="meaning-box meaning-common" style="margin-top: 0.5rem;">
+                <span class="meaning-label">🌍 Contexto Común / Cotidiano</span>
+                ${escapeHTML(t.common)}
+              </div>
+            ` : ''}
+
+            ${t.example ? `<p class="example-text" style="margin-top: 0.7rem;">"${escapeHTML(t.example)}"</p>` : ''}
+          </div>
+
+          <div class="card-footer">
+            <div style="margin-right:auto; display:flex; gap:0.15rem;">
+              <button class="btn btn-speak" onclick="speakById(${t.id})" title="Escuchar pronunciación">🔊 Escuchar</button>
+              ${t.example ? `<button class="btn btn-speak" onclick="speakExampleById(${t.id})" title="Escuchar el ejemplo">🗣️ Ejemplo</button>` : ''}
+            </div>
+            <button class="btn btn-edit-ghost" onclick="openModal(${t.id})" title="Editar">
+              ✏️ Editar
+            </button>
+            <button class="btn btn-danger-ghost" onclick="deleteTerm(${t.id})" title="Eliminar">
+              🗑️ Borrar
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function escapeHTML(str) {
+      return String(str).replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+    }
+
+    function openModal(id = null) {
+      const modal = document.getElementById('termModal');
+      document.getElementById('termForm').reset();
+      document.getElementById('editId').value = id || '';
+      document.getElementById('fYear').value = activeTab === 'games' ? 'tec2' : activeTab;
+
+      if (id) {
+        const item = terms.find(t => t.id === id);
+        if (!item) return;
+        document.getElementById('modalTitle').textContent = 'Editar Término';
+        document.getElementById('fYear').value = item.year;
+        document.getElementById('fTerm').value = item.term;
+        document.getElementById('fCategory').value = item.category;
+        document.getElementById('fTech').value = item.tech;
+        document.getElementById('fCommon').value = item.common || '';
+        document.getElementById('fExample').value = item.example || '';
+      } else {
+        document.getElementById('modalTitle').textContent = 'Agregar Nuevo Término';
+      }
+      modal.classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('termModal').classList.remove('open');
+    }
+
+    // Cerrar el formulario con Esc o haciendo clic fuera de él
+    document.getElementById('termModal').addEventListener('click', e => {
+      if (e.target.id === 'termModal') closeModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    function saveTerm(e) {
+      e.preventDefault();
+      const id = document.getElementById('editId').value;
+      const data = {
+        id: id ? Number(id) : Date.now(),
+        year: document.getElementById('fYear').value,
+        term: document.getElementById('fTerm').value.trim(),
+        category: document.getElementById('fCategory').value,
+        tech: document.getElementById('fTech').value.trim(),
+        common: document.getElementById('fCommon').value.trim(),
+        example: document.getElementById('fExample').value.trim()
+      };
+
+      if (id) {
+        const idx = terms.findIndex(t => t.id === Number(id));
+        if (idx !== -1) terms[idx] = data;
+        showToast('Término actualizado ✅');
+      } else {
+        terms.unshift(data);
+        showToast('Término agregado ✅');
+      }
+
+      saveToStorage();
+      closeModal();
+      if (activeTab !== 'games') {
+        setTab(data.year);
+      }
+    }
+
+    function deleteTerm(id) {
+      if (!confirm('¿Seguro que querés eliminar este término del glosario?')) return;
+      terms = terms.filter(t => t.id !== id);
+      saveToStorage();
+      renderCards();
+      showToast('Término eliminado 🗑️');
+    }
+
+    function exportJSON() {
+      const blob = new Blob([JSON.stringify(terms, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'glosario-ingles-tecnico.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Respaldo descargado (.json) 💾');
+    }
+
+    function importJSON(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        try {
+          const parsed = JSON.parse(ev.target.result);
+          if (!Array.isArray(parsed)) throw new Error();
+          terms = parsed;
+          saveToStorage();
+          renderCards();
+          showToast(`¡Se cargaron ${terms.length} términos! 📂`);
+        } catch {
+          alert('El archivo seleccionado no es un respaldo válido.');
+        }
+      };
+      reader.readAsText(file);
+      e.target.value = '';
+    }
+
+    function getGamePool() {
+      const src = document.getElementById('gameSource').value;
+      return src === 'ALL' ? terms : terms.filter(t => t.year === src);
+    }
+
+    function setGameMode(mode) {
+      currentGame = mode;
+      ['flash', 'quiz', 'match', 'grammar'].forEach(m => {
+        const btn = document.getElementById('btnMode' + m.charAt(0).toUpperCase() + m.slice(1));
+        if (btn) btn.className = m === mode ? 'btn btn-primary' : 'btn btn-outline';
+      });
+      initCurrentGame();
+    }
+
+    function initCurrentGame() {
+      const pool = getGamePool();
+      const box = document.getElementById('gameContainer');
+
+      if (currentGame === 'grammar') {
+        renderGrammarGame();
+        return;
+      }
+
+      if (pool.length < 4 && currentGame !== 'flash') {
+        box.innerHTML = `<p class="empty-state">Necesitás al menos 4 términos cargados en esta selección para jugar.</p>`;
+        return;
+      }
+      if (pool.length === 0) {
+        box.innerHTML = `<p class="empty-state">No hay términos cargados todavía.</p>`;
+        return;
+      }
+
+      if (currentGame === 'flash') renderFlashcard(pool);
+      if (currentGame === 'quiz') renderQuiz(pool);
+      if (currentGame === 'match') renderMatch(pool);
+    }
+
+    function renderFlashcard(pool) {
+      if (flashIndex >= pool.length) flashIndex = 0;
+      const item = pool[flashIndex];
+      document.getElementById('gameContainer').innerHTML = `
+        <p style="text-align:center; color:var(--text-muted); font-size:0.9rem;">
+          Tarjeta ${flashIndex + 1} de ${pool.length} • Hacé clic en la tarjeta para girarla
+        </p>
+        <div class="flashcard-wrap" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-face">
+              <span class="cat-tag">${escapeHTML(item.category)}</span>
+              <h2 style="font-size:2rem; color:var(--primary);">${escapeHTML(item.term)}</h2>
+              <button class="btn btn-speak" onclick="event.stopPropagation(); speakById(${item.id})" title="Escuchar pronunciación">🔊 Escuchar</button>
+              ${item.example ? `<p class="example-text">"${escapeHTML(item.example)}"</p>` : ''}
+            </div>
+            <div class="flashcard-face flashcard-back">
+              <strong style="color:var(--accent);">💻 Significado Técnico:</strong>
+              <p style="font-size:1.05rem; font-weight:600;">${escapeHTML(item.tech)}</p>
+              ${item.common ? `<p style="font-size:0.88rem; color:var(--text-muted);">🌍 Uso común: ${escapeHTML(item.common)}</p>` : ''}
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:center; gap:0.75rem; margin-top:1rem;">
+          <button class="btn btn-outline" onclick="flashIndex=(flashIndex-1+${pool.length})%${pool.length}; renderFlashcard(getGamePool())">⬅️ Anterior</button>
+          <button class="btn btn-primary" onclick="flashIndex=(flashIndex+1)%${pool.length}; renderFlashcard(getGamePool())">Siguiente ➡️</button>
+        </div>
+      `;
+    }
+
+    // 2. Quiz con marcado en rojo + revelación en verde y pausa
+    function renderQuiz(pool) {
+      const shuffled = [...pool].sort(() => Math.random() - 0.5);
+      const target = shuffled[0];
+      const options = shuffled.slice(0, 4).sort(() => Math.random() - 0.5);
+
+      document.getElementById('gameContainer').innerHTML = `
+        <div class="quiz-box">
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.75rem;">
+            <span class="cat-tag">${escapeHTML(target.category)}</span>
+            <strong id="quizScoreBox">Puntaje: ${quizScore} 🏆</strong>
+          </div>
+          <h3>¿Cuál es el significado técnico de <span style="color:var(--primary);">"${escapeHTML(target.term)}"</span>?</h3>
+          <div class="quiz-options">
+            ${options.map(o => `
+              <button class="quiz-opt" data-correct="${o.id === target.id}" onclick="checkQuiz(this, ${o.id === target.id})">
+                ${escapeHTML(o.tech)}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function checkQuiz(btn, isCorrect) {
+      const allBtns = document.querySelectorAll('.quiz-opt');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        quizScore += 10;
+        showToast('¡Correcto! +10 puntos 🎉');
+        setTimeout(() => renderQuiz(getGamePool()), 1300);
+      } else {
+        btn.classList.add('wrong');
+        allBtns.forEach(b => {
+          if (b.dataset.correct === 'true') {
+            b.classList.add('correct');
+          }
+        });
+        quizScore -= 5;
+        showToast('Incorrecto ❌ -5 puntos. Mirá la opción correcta en verde');
+        setTimeout(() => renderQuiz(getGamePool()), 2600);
+      }
+      const box = document.getElementById('quizScoreBox');
+      if (box) box.textContent = `Puntaje: ${quizScore} 🏆`;
+    }
+
+    // 3. Unir Parejas con sistema de 3 vidas
+    let selectedLeft = null;
+    let selectedRight = null;
+    let matchedCount = 0;
+    let matchLives = 3;
+    let matchLocked = false;
+    let matchStreak = 0;
+    let matchBestStreak = 0;
+    try { matchBestStreak = parseInt(localStorage.getItem('it_glossary_match_best'), 10) || 0; } catch (e) {}
+
+    // Las rachas solo se actualizan al terminar la ronda (ganada o perdida)
+    function finishMatchRound(won) {
+      if (won) {
+        matchStreak++;
+        if (matchStreak > matchBestStreak) {
+          matchBestStreak = matchStreak;
+          try { localStorage.setItem('it_glossary_match_best', matchBestStreak); } catch (e) {}
+        }
+      } else {
+        matchStreak = 0;
+      }
+    }
+
+    function getHeartsHTML(lives) {
+      return '❤️'.repeat(lives) + '🖤'.repeat(Math.max(0, 3 - lives));
+    }
+
+    function renderMatch(pool) {
+      selectedLeft = null;
+      selectedRight = null;
+      matchedCount = 0;
+      matchLives = 3;
+      matchLocked = false;
+
+      const sample = [...pool].sort(() => Math.random() - 0.5).slice(0, 4);
+      const leftCol = [...sample].sort(() => Math.random() - 0.5);
+      const rightCol = [...sample].sort(() => Math.random() - 0.5);
+
+      document.getElementById('gameContainer').innerHTML = `
+        <div class="match-header">
+          <p style="color:var(--text-muted);">Seleccioná un término en inglés y luego su significado técnico</p>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <div class="lives-display" title="Rondas completadas seguidas">Racha actual: 🔥 ${matchStreak}</div>
+            <div class="lives-display" title="Mejor racha histórica">Mejor racha: 🏅 ${matchBestStreak}</div>
+            <div class="lives-display" id="matchLivesBox">Vidas: ${getHeartsHTML(matchLives)}</div>
+          </div>
+        </div>
+        <div class="match-grid">
+          <div class="match-col">
+            ${leftCol.map(i => `<div class="match-item" data-side="L" data-id="${i.id}" onclick="pickMatch(this)">${escapeHTML(i.term)}</div>`).join('')}
+          </div>
+          <div class="match-col">
+            ${rightCol.map(i => `<div class="match-item" data-side="R" data-id="${i.id}" onclick="pickMatch(this)">${escapeHTML(i.tech)}</div>`).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function pickMatch(el) {
+      if (matchLocked || el.classList.contains('matched')) return;
+
+      const side = el.dataset.side;
+      if (side === 'L') {
+        if (selectedLeft) selectedLeft.classList.remove('selected');
+        selectedLeft = el;
+        el.classList.add('selected');
+      } else {
+        if (selectedRight) selectedRight.classList.remove('selected');
+        selectedRight = el;
+        el.classList.add('selected');
+      }
+
+      if (selectedLeft && selectedRight) {
+        if (selectedLeft.dataset.id === selectedRight.dataset.id) {
+          selectedLeft.classList.remove('selected');
+          selectedRight.classList.remove('selected');
+          selectedLeft.classList.add('matched');
+          selectedRight.classList.add('matched');
+          matchedCount++;
+          selectedLeft = null;
+          selectedRight = null;
+
+          if (matchedCount === 4) {
+            finishMatchRound(true);
+            showToast(`¡Completaste todas las parejas! 🎉 Racha: ${matchStreak}`);
+            setTimeout(() => renderMatch(getGamePool()), 1200);
+          }
+        } else {
+          matchLocked = true;
+          matchLives--;
+          const l = selectedLeft;
+          const r = selectedRight;
+          l.classList.remove('selected');
+          r.classList.remove('selected');
+          l.classList.add('wrong-pair');
+          r.classList.add('wrong-pair');
+
+          const livesBox = document.getElementById('matchLivesBox');
+          if (livesBox) livesBox.innerHTML = `Vidas: ${getHeartsHTML(matchLives)}`;
+
+          if (matchLives <= 0) {
+            finishMatchRound(false);
+            showToast('¡Te quedaste sin vidas! 💔 Racha reiniciada...');
+            setTimeout(() => renderMatch(getGamePool()), 1500);
+          } else {
+            showToast(`Par incorrecto ❌ Te quedan ${matchLives} ${matchLives === 1 ? 'vida' : 'vidas'}`);
+            setTimeout(() => {
+              l.classList.remove('wrong-pair');
+              r.classList.remove('wrong-pair');
+              matchLocked = false;
+            }, 650);
+          }
+          selectedLeft = null;
+          selectedRight = null;
+        }
+      }
+    }
+
+    function renderGrammarGame() {
+      // Evita que salga la misma pregunta dos veces seguidas
+      let next;
+      do {
+        next = GRAMMAR_POOL[Math.floor(Math.random() * GRAMMAR_POOL.length)];
+      } while (next === currentGrammarQ && GRAMMAR_POOL.length > 1);
+      currentGrammarQ = next;
+      document.getElementById('gameContainer').innerHTML = `
+        <div class="grammar-game-box">
+          <div style="display:flex; justify-content:space-between; margin-bottom:1rem;">
+            <span class="cat-tag">Gramática • Inglés Técnico</span>
+            <strong id="grammarScoreBox">Puntaje: ${grammarScore} ⚡</strong>
+          </div>
+          <p style="color:var(--text-muted);">Escribí la forma correcta en <strong style="color:var(--primary);">${currentGrammarQ.type}</strong> para la palabra:</p>
+          <div class="grammar-target-word">${currentGrammarQ.word}</div>
+          <p style="font-size:0.88rem; font-style:italic; color:var(--text-muted);">Pista: ${currentGrammarQ.hint}</p>
+          <form onsubmit="checkGrammarAnswer(event)" class="grammar-input-group">
+            <input type="text" id="grammarInput" placeholder="Escribí tu respuesta..." autocomplete="off" required />
+            <button type="submit" class="btn btn-primary">Comprobar</button>
+          </form>
+        </div>
+      `;
+      const input = document.getElementById('grammarInput');
+      if (input) input.focus();
+    }
+
+    function checkGrammarAnswer(e) {
+      e.preventDefault();
+      const normalize = s => s.trim().toLowerCase().replace(/\s+/g, ' ');
+      const input = document.getElementById('grammarInput');
+      if (input.disabled) return; // evita contar dos veces la misma respuesta
+      const val = input.value;
+      input.disabled = true;
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+      const valid = [currentGrammarQ.answer, ...(currentGrammarQ.alt || [])].map(normalize);
+      if (valid.includes(normalize(val))) {
+        grammarScore += 15;
+        showToast('¡Excelente! ¡Forma correcta! 🎉 +15 pts');
+      } else {
+        grammarScore -= 10;
+        showToast(`Incorrecto ❌ -10 pts. Era: ${currentGrammarQ.answer}`);
+      }
+      const box = document.getElementById('grammarScoreBox');
+      if (box) box.textContent = `Puntaje: ${grammarScore} ⚡`;
+      setTimeout(renderGrammarGame, 1300);
+    }
+
+    updateCounts();
+    renderCards();
+  </script>
+</body>
+</html>
